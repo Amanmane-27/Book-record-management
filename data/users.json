@@ -1,0 +1,38 @@
+{
+
+    "users":[
+        {
+            "id":"1",
+            "name":"",
+            "surname":"",
+            "email.com":"",
+            "issuedBook":"",
+            "issuedDate":"",
+            "returnDate":"",
+            "subcriptionType":"",
+            "subcriptionDate":""
+        },
+        {
+            "id":"2",
+            "name":"",
+            "surname":"",
+            "email.com":"",
+            "issuedBook":"",
+            "issuedDate":"",
+            "returnDate":"",
+            "subcriptionType":"",
+            "subcriptionDate":""
+        }, {
+            "id":"3",
+            "name":"",
+            "surname":"",
+            "email.com":"",
+            "issuedBook":"",
+            "issuedDate":"",
+            "returnDate":"",
+            "subcriptionType":"",
+            "subcriptionDate":""
+        }
+    ]
+
+}
