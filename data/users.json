@@ -3,9 +3,9 @@
     "users":[
         {
             "id":"1",
-            "name":"",
+            "name":"aman",
             "surname":"",
-            "email.com":"",
+            "email":"",
             "issuedBook":"",
             "issuedDate":"",
             "returnDate":"",
@@ -14,9 +14,9 @@
         },
         {
             "id":"2",
-            "name":"",
+            "name":"aditya",
             "surname":"",
-            "email.com":"",
+            "email":"",
             "issuedBook":"",
             "issuedDate":"",
             "returnDate":"",
@@ -26,10 +26,26 @@
             "id":"3",
             "name":"",
             "surname":"",
-            "email.com":"",
+            "email":"",
             "issuedBook":"",
             "issuedDate":"",
             "returnDate":"",
+            "subcriptionType":"",
+            "subcriptionDate":""
+        }
+        , {
+            "id":"4",
+            "name":"",
+            "surname":"",
+            "email":"",
+            "subcriptionType":"",
+            "subcriptionDate":""
+        }
+        , {
+            "id":"5",
+            "name":"",
+            "surname":"",
+            "email":"",
             "subcriptionType":"",
             "subcriptionDate":""
         }
