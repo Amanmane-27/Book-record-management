@@ -1,12 +1,14 @@
 const express = require ("express");
-const {Books} = require ("../data/books.json")
+const {Books} = require ("../data/books.json");
+const {users} = require("../data/users.json");
+
 const router = express.Router();
 
 
 router.get('/',(req,res) => {
     res.status(200).json({
         success:true,
-        message : "get all the Book ",
+        message : "successfully got all the Book ",
         data:Books
     }
     )
@@ -19,17 +21,17 @@ router.get("/:id",(req,res) => {
     // console.log(user1)
     if(!book){
         return res.status(404).json({ 
-            message:"user doesn't found "
+            message:"Book doesn't found "
         })
     }
     else
     {return res.status(200).json({
-        message:"user found successfully",
+        message:"Book found successfully",
         data:book,
     })}
 })
 router.post("/",(req,res)=>{
-    const {id,name,surname,email,subcriptionType,subcriptionDate} = req.body;
+    const {id,name,author,genre,published,price} = req.body;
     console.log('req.body =',res.body );
 
     const book=Books.find((each)=>each.id===id);
@@ -44,16 +46,37 @@ router.post("/",(req,res)=>{
     Books.push({
         id,
         name,
-        surname,
-        email,
-        subcriptionType,
-        subcriptionDate
+        author,
+        genre,
+        published,
+        price,
     })
     return res.status(200).json({
         success:true,
         messgae:"updation complete",
         data:Books,
     })
+})
+
+router.get("/issued",(req,res)=>{
+    const userWithTheIssuedBook=users.filter((each) => {
+        if(each.issuedBook) return each;
+    });
+    const issuedBooks = [];
+    userWithTheIssuedBook.forEach((each) => {
+        const book = Books.find((book)=> book.id = each.issuedBook )
+        book.issuedBy = each.name;
+        book.issueddate = each.issuedDate;
+        book.returnDate = each.returnDate;
+
+        issuedBooks.push(book);
+    })
+    if(issuedBooks.length===0){
+        return res.status(200),json({
+            success:false,
+            message: "No book have been found issued yet..."
+        })
+    }
 })
 
 
