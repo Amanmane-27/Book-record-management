@@ -13,6 +13,33 @@ router.get('/',(req,res) => {
     }
     )
 })
+router.get("/issued",(req,res)=>{
+    const userWithTheIssuedBook=users.filter((each) => {
+        
+        if(each.issuedBook) return each;
+    });
+    console.log(userWithTheIssuedBook)
+    const issuedBooks = [];
+    userWithTheIssuedBook.forEach((each) => {
+        const book = Books.find((book)=> book.id == each.issuedBook )
+        book.issuedBy = each.name;
+        book.issueddate = each.issuedDate;
+        book.returnDate = each.returnDate;
+
+        issuedBooks.push(book);
+    })
+    if(issuedBooks.length===0){
+        return res.status(404).json({
+            success:false,
+            message: "No book have been found issued yet..."
+        })
+    }
+    return res.status(200).json({
+        success:true,
+        message:"Issued books found successFully",
+        data:issuedBooks,
+    })
+})
 router.get("/:id",(req,res) => {
     const {id} = req.params;
     console.log(id)
@@ -21,7 +48,8 @@ router.get("/:id",(req,res) => {
     // console.log(user1)
     if(!book){
         return res.status(404).json({ 
-            message:"Book doesn't found "
+            success:false,
+            message:"Book doesn't found... "
         })
     }
     else
@@ -58,26 +86,6 @@ router.post("/",(req,res)=>{
     })
 })
 
-router.get("/issued",(req,res)=>{
-    const userWithTheIssuedBook=users.filter((each) => {
-        if(each.issuedBook) return each;
-    });
-    const issuedBooks = [];
-    userWithTheIssuedBook.forEach((each) => {
-        const book = Books.find((book)=> book.id = each.issuedBook )
-        book.issuedBy = each.name;
-        book.issueddate = each.issuedDate;
-        book.returnDate = each.returnDate;
-
-        issuedBooks.push(book);
-    })
-    if(issuedBooks.length===0){
-        return res.status(200),json({
-            success:false,
-            message: "No book have been found issued yet..."
-        })
-    }
-})
 
 
 
